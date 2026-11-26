@@ -1,0 +1,185 @@
+{
+  "synthetic": true,
+  "records": [
+    {
+      "id": "service-A",
+      "kind": "service",
+      "refs": [],
+      "stops": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "capacity_kg": 100,
+      "box_slots": 3
+    },
+    {
+      "id": "alias-old",
+      "kind": "service_alias",
+      "refs": [
+        "service-A"
+      ],
+      "display_number": "6063",
+      "before": "2026-12-05"
+    },
+    {
+      "id": "alias-new",
+      "kind": "service_alias",
+      "refs": [
+        "service-A"
+      ],
+      "display_number": "V7001",
+      "from_date": "2026-12-05"
+    },
+    {
+      "id": "run-A",
+      "kind": "run",
+      "refs": [
+        "service-A"
+      ],
+      "operating_date": "2026-12-06"
+    },
+    {
+      "id": "run-B",
+      "kind": "run",
+      "refs": [
+        "service-A"
+      ],
+      "operating_date": "2026-12-07"
+    },
+    {
+      "id": "box-A",
+      "kind": "container",
+      "refs": [],
+      "seal": "SEAL-1"
+    },
+    {
+      "id": "box-B",
+      "kind": "container",
+      "refs": [],
+      "seal": "SEAL-2"
+    },
+    {
+      "id": "parcel-A",
+      "kind": "parcel",
+      "refs": [
+        "box-A",
+        "run-A"
+      ],
+      "sender": "sender-A",
+      "recipient": "recipient-A",
+      "from_station": "A",
+      "to_station": "C",
+      "weight_kg": 30,
+      "category": "dry-produce"
+    },
+    {
+      "id": "parcel-B",
+      "kind": "parcel",
+      "refs": [
+        "box-A",
+        "run-A"
+      ],
+      "sender": "sender-B",
+      "recipient": "recipient-B",
+      "from_station": "A",
+      "to_station": "D",
+      "weight_kg": 20,
+      "category": "dry-produce"
+    },
+    {
+      "id": "parcel-C",
+      "kind": "parcel",
+      "refs": [
+        "box-B",
+        "run-A"
+      ],
+      "sender": "sender-C",
+      "recipient": "recipient-C",
+      "from_station": "B",
+      "to_station": "D",
+      "weight_kg": 60,
+      "category": "dry-produce"
+    },
+    {
+      "id": "authorization-A",
+      "kind": "pickup_grant",
+      "refs": [
+        "parcel-A"
+      ],
+      "recipient": "recipient-A",
+      "delegate": "delegate-A",
+      "station": "C",
+      "valid_until": "2026-12-07T00:00:00+08:00"
+    },
+    {
+      "id": "revoke-A",
+      "kind": "grant_change",
+      "refs": [
+        "authorization-A"
+      ],
+      "at": "2026-12-06T11:00:00+08:00",
+      "change": "revoked"
+    },
+    {
+      "id": "skip-C",
+      "kind": "service_change",
+      "refs": [
+        "run-A"
+      ],
+      "skip_stop": "C",
+      "at": "2026-12-06T09:00:00+08:00"
+    },
+    {
+      "id": "handover-station",
+      "kind": "handover_fact",
+      "refs": [
+        "parcel-A"
+      ],
+      "source_sequence": 3,
+      "from_party": "crew-A",
+      "to_party": "station-D",
+      "at": "2026-12-06T12:00:00+08:00",
+      "uploaded_at": "2026-12-06T12:01:00+08:00"
+    },
+    {
+      "id": "late-onboard",
+      "kind": "handover_fact",
+      "refs": [
+        "parcel-A"
+      ],
+      "source_sequence": 2,
+      "from_party": "station-A",
+      "to_party": "crew-A",
+      "at": "2026-12-06T08:00:00+08:00",
+      "uploaded_at": "2026-12-06T13:00:00+08:00"
+    },
+    {
+      "id": "catalog-A",
+      "kind": "acceptance_catalog",
+      "refs": [],
+      "accepted": [
+        "dry-produce",
+        "fresh-produce"
+      ],
+      "prohibited": [
+        "flammable",
+        "toxic"
+      ],
+      "requires_ventilation": [
+        "fresh-produce"
+      ]
+    }
+  ],
+  "principals": {
+    "sender-A": "sender-A",
+    "sender-B": "sender-B",
+    "station-A": "station-A",
+    "station-D": "station-D",
+    "crew-A": "crew-A",
+    "recipient-A": "recipient-A",
+    "delegate-A": "delegate-A",
+    "reviewer-A": "compensation-review"
+  }
+}

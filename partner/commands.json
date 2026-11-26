@@ -1,0 +1,76 @@
+{
+  "synthetic": true,
+  "commands": [
+    {
+      "id": "load-A",
+      "operation": "handover",
+      "refs": [
+        "parcel-A",
+        "parcel-B",
+        "box-A",
+        "run-A"
+      ],
+      "request": {
+        "container": "box-A",
+        "run": "run-A",
+        "from": "station-A",
+        "to": "crew-A"
+      },
+      "response_status": 504,
+      "observations": [
+        {
+          "state": "pending"
+        },
+        {
+          "state": "accepted",
+          "source_sequence": 2,
+          "custodian": "crew-A"
+        }
+      ]
+    },
+    {
+      "id": "unload-A",
+      "operation": "handover",
+      "refs": [
+        "parcel-A",
+        "run-A"
+      ],
+      "request": {
+        "parcel": "parcel-A",
+        "run": "run-A",
+        "from": "crew-A",
+        "to": "station-D"
+      },
+      "response_status": 202,
+      "observations": [
+        {
+          "state": "accepted",
+          "source_sequence": 3,
+          "custodian": "station-D"
+        }
+      ]
+    },
+    {
+      "id": "compensate-A",
+      "operation": "compensation",
+      "refs": [
+        "parcel-A"
+      ],
+      "request": {
+        "parcel": "parcel-A",
+        "amount": 3000
+      },
+      "response_status": 504,
+      "observations": [
+        {
+          "state": "pending"
+        },
+        {
+          "state": "paid",
+          "voucher": "PARCEL-P1",
+          "amount": 3000
+        }
+      ]
+    }
+  ]
+}
